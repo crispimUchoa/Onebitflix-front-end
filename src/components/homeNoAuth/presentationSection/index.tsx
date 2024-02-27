@@ -10,8 +10,8 @@ export default function PresentationSection(){
                 <p className={styles.subTitle}>ACESSO ILIMITADO</p>
                 <p className={styles.title}>Tenha acesso aos melhores <br /> tutoriais de Programação.</p>
                 <p className={styles.description}>Estude de onde estiver, a qualquer momento, e continue <br /> evoluindo como programador.</p>
-                <Link href='/register'>
-                    <Button outline className={styles.btnCta}>ACESSE AGORA <img src="/buttonPlay.svg" alt="buttonImg" className={styles.btnImg}/></Button>
+                <Link className={styles.linkBtn} href='/register'>
+                    <Button outline className={styles.btnCta}>ACESSE AGORA<img src="/buttonPlay.svg" alt="buttonImg" className={styles.btnImg}/></Button>
                 </Link>
             </Col>
             <Col md>

@@ -22,11 +22,14 @@
     margin: 20px 0px 40px 0px;
 }
 
+.linkBtn{
+    text-decoration: none;
+}
+
 .btnCta{
+    display: flex;
     font-weight: bold;
     color: white;
-
-    display: flex;
     align-items: center;
     gap: 25px;
     padding: 14px 30px;

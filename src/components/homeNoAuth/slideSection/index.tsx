@@ -10,11 +10,11 @@ interface props{
 
 export default function SlideSection({newestCourses}:props){
     return<>
-    <Container>
+    <Container className='d-flex flex-column align-items-center'>
         <p className={styles.sectionTitle}>AULAS JÁ DISPONÍVEIS</p>
         <SlideComponent course={newestCourses}/>
         <Link href='/register'>
-        <Button outline color='light' className={styles.sectionBtn}>Se cadastre para acessar!</Button>
+        <Button outline color='light' className={styles.slideSectionBtn}>Se cadastre para acessar!</Button>
         </Link>
     </Container>
     </>

@@ -15,6 +15,12 @@ export default function Login(){
     const [toastMessage, setToastMessage] = useState('')
 
     useEffect(()=>{
+        if(sessionStorage.getItem('onebitflix-token')){
+            router.push('/home')
+        }
+    }, [])
+
+    useEffect(()=>{
         const registerSucess = router.query.registered
 
         if(registerSucess === 'true'){

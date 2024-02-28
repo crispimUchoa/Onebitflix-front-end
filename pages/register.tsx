@@ -3,6 +3,10 @@ import styles from '../styles/registerLogin.module.scss'
 import Head from 'next/head'
 import { Form, FormGroup, Label, Input, Container, Button } from 'reactstrap'
 import Footer from '@/components/common/footer'
+import { FormEvent, useState } from 'react'
+import authService from '@/services/authService'
+import { useRouter } from 'next/router'
+import ToastComponent from '@/components/common/toast'
 
 const currentDate = new Date()
 const currentYear = currentDate.getFullYear()
@@ -14,6 +18,46 @@ const alloweDate = `${allowedYear}-${currentMonth}-${currentDay}`
 
 
 export default function Register(){
+    const router = useRouter()  
+    const [toastIsOpen, setToastIsOpen] = useState(false)
+    const [toastMessage, setToastMessage] = useState('')
+    const handleRegister = async (event: FormEvent<HTMLFormElement>)=>{
+        event.preventDefault()
+
+        const formData = new FormData(event.currentTarget)
+        const firstName = formData.get('firstName')!.toString()
+        const lastName = formData.get('lastName')!.toString()
+        const birth = formData.get('birth')!.toString()
+        const email = formData.get('email')!.toString() 
+        const phone = formData.get('phone')!.toString()
+        const password = formData.get('password')!.toString()
+        const confirmPassword = formData.get('confirmPassword')!.toString()
+
+        const params = {firstName, lastName, birth, email, password, phone}
+
+        if(password!==confirmPassword) {
+            setToastIsOpen(true)
+            setTimeout(()=>{
+                setToastIsOpen(false)
+            }, 1000*3)
+            setToastMessage('Senhas e confirmação diferentes')
+
+            return;
+        }
+
+        const {data, status} = await authService.register(params)
+
+        if(status===201){
+            router.push('/login?registred=true')
+        } else{
+            setToastIsOpen(true)
+            setTimeout(()=>{
+                setToastIsOpen(false)
+            }, 1000*3)
+            setToastMessage(data.message)
+        }
+    }
+
     return <>
     <Head>
         <title>Onebitflix - Registro</title>
@@ -26,7 +70,7 @@ export default function Register(){
 
     <Container className='py-5'>
         <p className={styles.formTitle}>Bem-vindo(a) ao OneBitFlix!</p>
-        <Form className={styles.form} >
+        <Form onSubmit={handleRegister} className={styles.form} >
             <p className='text-center'><strong>Faça a sua conta!</strong></p>
 
             <FormGroup>
@@ -71,9 +115,9 @@ export default function Register(){
                 <Input 
                 id='email' 
                 name='email' 
-                type='text' 
+                type='email' 
                 placeholder='Digite seu email' 
-                required maxLength={20}
+                required maxLength={50}
                 className={styles.input}
                 />
             </FormGroup>
@@ -120,6 +164,7 @@ export default function Register(){
         </Form>
     </Container>
     <Footer/>
+    <ToastComponent color='bg-danger' isOpen={toastIsOpen} message={toastMessage} />
     </main>
     </>
 }

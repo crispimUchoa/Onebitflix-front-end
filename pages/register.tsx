@@ -48,7 +48,7 @@ export default function Register(){
         const {data, status} = await authService.register(params)
 
         if(status===201){
-            router.push('/login?registred=true')
+            router.push('/login?registered=true')
         } else{
             setToastIsOpen(true)
             setTimeout(()=>{
@@ -62,7 +62,7 @@ export default function Register(){
     <Head>
         <title>Onebitflix - Registro</title>
         <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
-        <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
+
         <script src="https://jsuites.net/v4/jsuites.js"></script>
     </Head>
     <main className={styles.main}>

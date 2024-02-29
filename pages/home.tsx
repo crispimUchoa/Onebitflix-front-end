@@ -3,6 +3,7 @@ import HeadersGenerics from "@/components/common/headersGenerics";
 import FavoriteCategory from "@/components/homeAuth/favoriteCategory";
 import FeaturedCategory from "@/components/homeAuth/featuredCategory";
 import FeaturedSection from "@/components/homeAuth/featuredSection";
+import ListCategories from "@/components/homeAuth/listCategories";
 import NewestCategory from "@/components/homeAuth/newestCategory";
 import Head from "next/head";
 import { Container } from "reactstrap";
@@ -18,6 +19,7 @@ export default function Home(){
         <NewestCategory/>
         <FavoriteCategory/>
         <FeaturedCategory/>
+        <ListCategories/>
     </main>
     </>
 }

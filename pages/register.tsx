@@ -11,7 +11,7 @@ import ToastComponent from '@/components/common/toast'
 const currentDate = new Date()
 const currentYear = currentDate.getFullYear()
 const currentMonth = currentDate.getMonth().toString().padStart(2, '0')
-const currentDay = currentDate.getDay().toString().padStart(2, '0')
+const currentDay = currentDate.getDate().toString().padStart(2, '0')
 const allowedYear = currentYear-13
 
 const alloweDate = `${allowedYear}-${currentMonth}-${currentDay}`

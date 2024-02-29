@@ -109,7 +109,11 @@
     &:hover{
         background-color: transparent;
         border-color: $darkRed;
-        color: $darkGray;
+        color: $darkRed;
+    }
+    &:active, :focus{
+        background-color: transparent;
+        box-shadow: none;
     }
 }
 .header, .footer{
@@ -150,5 +154,11 @@
     }
     .inputFlex{
         width: 100%;
+    }
+}
+
+@media (min-width:1400px){
+    .formBtn{
+        margin: 0 5%;
     }
 }

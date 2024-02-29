@@ -50,6 +50,12 @@ export default function UserForm(){
             setToastMessage('Informações alteradas com sucesso!')
             setColor('bg-success')
             
+            if(email!=initialEmail){
+                sessionStorage.clear()
+
+                setTimeout(()=>{router.push('/')},1000*1)
+
+            }
         } else{
             setToastIsOpen(true)
             setToastMessage('Você não pode mudar para esse email!')
@@ -57,11 +63,6 @@ export default function UserForm(){
         }
         setTimeout(()=>{
             setToastIsOpen(false)
-
-            if(email!=initialEmail){
-                router.push('/')
-                sessionStorage.clear()
-            }
     }, 1000*3)
     }
 

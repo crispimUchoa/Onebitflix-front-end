@@ -4,14 +4,17 @@ import Head from 'next/head'
 import HeaderAuth from '@/components/common/headerAuth'
 import { Button, Col, Container, Row } from 'reactstrap'
 import Footer from '@/components/common/footer'
+import { useState } from 'react'
+import PasswordForm from '@/components/password'
 
 export default function userInfo(){
+    const [form, setForm] = useState('userForm')
     return <>
     <Head>
         <title>Onebitflix - Meus dados</title>
         <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
     </Head>
-    <main>
+    <main className={styles.main}>
         <div className={styles.header}>
         <HeaderAuth/>
         </div>
@@ -19,10 +22,10 @@ export default function userInfo(){
         <p className={styles.title}>Minha conta</p>
         <Row className='pt-3 pb-5'>
             <Col md={4} className={styles.btnColumn}>
-                <Button className={styles.renderForm}>DADOS PESSOAIS</Button>
-                <Button className={styles.renderForm}>SENHA</Button>
+                <Button className={styles.renderForm} style={{color: form==='userForm'?'#ff0044':'white'}} onClick={()=>setForm('userForm')}>DADOS PESSOAIS</Button>
+                <Button className={styles.renderForm} style={{color: form==='passwordForm'?'#ff0044':'white'}} onClick={()=>setForm('passwordForm')}>SENHA</Button>
             </Col>
-            <Col md><UserForm/></Col>
+            <Col md>{form==='userForm'?<UserForm/>:<PasswordForm/>}</Col>
         </Row>
         </Container>
         <div className={styles.footer}>

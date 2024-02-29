@@ -24,22 +24,24 @@ export default function SlideComponent({course}:props){
             perPage: slideCount,
             perMove: 1,
             width: 1350,
-            arrow:course.length>4 ? true : false,
+            arrows:course.length>4 ? true : false,
             drag:course.length>4 ? true : false,
             breakpoints: {
                 1350: {
-                    width: slideCount*300
+                    width: slideCount*300,
+                    arrows:course.length>4 ? true : false,
+                    drag:course.length>4 ? true : false,
                 },
                 1200: {
                     perPage: slideCount >=2 ? 2: 1,
                     width: slideCount >=2 ? 600 : 300,
-                    arrow:course.length>2 ? true : false,
+                    arrows:course.length>2 ? true : false,
                     drag:course.length>2 ? true : false
                 },
                 600: {
                     perPage: 1,
                     width: 300,
-                    arrow:course.length>1 ? true : false,
+                    arrows:course.length>1 ? true : false,
                     drag:course.length>1 ? true : false
                 },
                 300: {

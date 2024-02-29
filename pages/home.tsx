@@ -1,3 +1,4 @@
+import Footer from "@/components/common/footer";
 import HeaderAuth from "@/components/common/headerAuth";
 import HeadersGenerics from "@/components/common/headersGenerics";
 import FavoriteCategory from "@/components/homeAuth/favoriteCategory";
@@ -20,6 +21,7 @@ export default function Home(){
         <FavoriteCategory/>
         <FeaturedCategory/>
         <ListCategories/>
+        <Footer/>
     </main>
     </>
 }

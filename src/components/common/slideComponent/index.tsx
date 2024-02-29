@@ -18,12 +18,12 @@ export default function SlideComponent({course}:props){
     }
 
     return <>
-    <div className='d-flex flex-column align-items-center py-4'>
+    <div className=' d-flex flex-column align-items-center py-4'>
         <Splide options={{
             type: 'loop',
             perPage: slideCount,
             perMove: 1,
-            width: 1350,
+            width: slideCount*338,
             arrows:course.length>4 ? true : false,
             drag:course.length>4 ? true : false,
             breakpoints: {

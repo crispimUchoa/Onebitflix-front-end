@@ -1,6 +1,7 @@
 import HeaderAuth from "@/components/common/headerAuth";
 import HeadersGenerics from "@/components/common/headersGenerics";
 import FavoriteCategory from "@/components/homeAuth/favoriteCategory";
+import FeaturedCategory from "@/components/homeAuth/featuredCategory";
 import FeaturedSection from "@/components/homeAuth/featuredSection";
 import NewestCategory from "@/components/homeAuth/newestCategory";
 import Head from "next/head";
@@ -16,6 +17,7 @@ export default function Home(){
         <FeaturedSection/>
         <NewestCategory/>
         <FavoriteCategory/>
+        <FeaturedCategory/>
     </main>
     </>
 }

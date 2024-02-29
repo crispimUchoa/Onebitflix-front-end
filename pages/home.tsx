@@ -1,6 +1,7 @@
 import HeaderAuth from "@/components/common/headerAuth";
 import HeadersGenerics from "@/components/common/headersGenerics";
 import FeaturedSection from "@/components/homeAuth/featuredSection";
+import NewestCategory from "@/components/homeAuth/newestCategory";
 import Head from "next/head";
 import { Container } from "reactstrap";
 
@@ -12,6 +13,7 @@ export default function Home(){
     </Head>
     <main>
         <FeaturedSection/>
+        <NewestCategory/>
     </main>
     </>
 }

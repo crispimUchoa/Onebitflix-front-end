@@ -1,6 +1,6 @@
 import styles from './styles.module.scss'
 import Link from "next/link";
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Container, Form, Input} from "reactstrap";
 import Modal from 'react-modal'
 import { useRouter } from 'next/router';
@@ -9,7 +9,21 @@ import { UserParams, profileService } from '@/services/profileService';
 Modal.setAppElement('#__next')
 
 export default function HeaderAuth(){
+    const router = useRouter()
     const [initials, setInitials] = useState('')
+    const [searchName, setSearchName] = useState('')
+    const [modalOpen, setModalOpen] = useState(false)
+
+    async function handleSearch(event:FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        router.push(`search?name=${searchName}`)
+        setSearchName('')
+    }
+
+    function handleSearchClick() {
+        router.push(`search?name=${searchName}`)
+        setSearchName('')
+    }
 
     useEffect(()=>{
         profileService.fetchCurrent().then((user: UserParams)=>{
@@ -18,8 +32,7 @@ export default function HeaderAuth(){
             setInitials(`${firstNameInitial}${lastNameInitial}`)
         })
     },[])
-    const router = useRouter()
-    const [modalOpen, setModalOpen] = useState(false)
+    
 
     function handleOpenModal(){
         setModalOpen(true)
@@ -32,6 +45,7 @@ export default function HeaderAuth(){
         sessionStorage.clear()
         router.push('/')
     }
+    
 
     return <>
     <Container className={styles.nav}>
@@ -40,10 +54,12 @@ export default function HeaderAuth(){
         </Link>
 
         <div className='d-flex align-items-center'>
-            <Form>
-                <Input name='search' type='search' placeholder='Pesquisar' className={styles.input}/>
+            <Form onSubmit={handleSearch}>
+                <Input name='search' type='search' placeholder='Pesquisar' className={styles.input}
+                value={searchName} onChange={(event)=>setSearchName(event.currentTarget.value.toLowerCase())}
+                />
             </Form>
-            <img src="/homeAuth/iconSearch.svg" alt="lupaHeader" className={styles.searchImg} />
+            <img src="/homeAuth/iconSearch.svg" alt="lupaHeader" className={styles.searchImg} onClick={handleSearchClick}/>
 
             <p className={styles.userProfile} onClick={handleOpenModal}>{initials}</p>
 

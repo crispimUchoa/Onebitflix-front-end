@@ -53,7 +53,7 @@ const couseService = {
     removeFav: async (courseId: number | string) => {
         const token = sessionStorage.getItem('onebitflix-token')
 
-        const res = await api.delete('/favorites', {
+        const res = await api.delete(`/favorites/${courseId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             },

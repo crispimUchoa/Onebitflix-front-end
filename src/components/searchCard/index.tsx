@@ -8,7 +8,7 @@ interface props{
 
 export default function SearchCard({course}:props){
     return<>
-    <Link className={styles.link}  href={`/courses/${course.id}`}>
+    <Link className={styles.link}  href={`/course/${course.id}`}>
         <div className={styles.searchCard}>
             <img src={`${process.env.NEXT_PUBLIC_BASEURL}${course.thumbnailUrl}`} alt={course.name} className={styles.searchCardImg}/>
             <p className={styles.searchCardTitle}>{course.name}</p>

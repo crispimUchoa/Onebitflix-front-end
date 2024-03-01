@@ -35,8 +35,8 @@ export default function Search(){
         <Container>
         <p className={styles.youSearch}>Você pesquisou por "{searchName}"...</p>
         </Container>
-        {searchResult.length>=1 ? 
-        <div className={styles.searchResults}>
+        {searchResult.length>=1&&searchName!=='' ? 
+        <div className={styles.searchContainer}>
             <Container className='d-flex flex-wrap justify-content-center gap-4 py-4 px-1'>
                 {searchResult?.map((course)=>(
                 <SearchCard course={course}/>
@@ -44,7 +44,9 @@ export default function Search(){
         </Container>
         </div>
         : (
-        <p className={styles.noSearchResult}>Nenhum resultado encontrado.</p>
+        <div className={styles.searchContainer}>
+            <p className={styles.noSearchResult}>Nenhum resultado encontrado.</p>
+        </div>
         
         )}
         <div className={styles.headerFooterBg}>

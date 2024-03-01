@@ -1,5 +1,6 @@
 import styles from './styles.module.scss'
 import { CourseType } from '../../../services/courseService'
+import Link from 'next/link'
 
 interface props{
     course: CourseType
@@ -7,7 +8,8 @@ interface props{
 
 export default function SlideCard({course}:props){
     return <>
-    <div className={styles.slide}>
+   <Link style={{textDecoration: 'none'}} href={`/course/${course.id}`}>
+   <div className={styles.slide}>
         <img 
         src={`${process.env.NEXT_PUBLIC_BASEURL}/${course.thumbnailUrl}`} 
         alt={course.name} 
@@ -16,5 +18,6 @@ export default function SlideCard({course}:props){
         <p className={styles.slideTitle}>{course.name}</p>
         <p className={styles.slideDescription}>{course.synopsis}</p>
     </div>
+   </Link>
     </>
 }

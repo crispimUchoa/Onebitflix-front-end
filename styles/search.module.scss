@@ -1,0 +1,22 @@
+.noSearchResult{
+    text-align:  center;
+    padding: 20px;
+    font-size: 24px;
+}
+.youSearch{
+    margin: 40px 0;
+    font-size: 20px;
+    
+}
+.headerFooterBg{
+    background-color: black;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+}
+.searchResults{
+    flex: 1 0 auto;
+    
+}
+

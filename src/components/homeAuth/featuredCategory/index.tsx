@@ -2,12 +2,13 @@ import useSWR from 'swr';
 import styles from '../../../../styles/slideCategory.module.scss'
 import couseService from '@/services/courseService';
 import SlideComponent from '@/components/common/slideComponent';
+import PageSpinner from '@/components/common/spinner';
 
 export default function FeaturedCategory(){
     const {data, error} = useSWR('/featured', couseService.getFeaturedCourses)
 
     if (error) return error;
-    if(!data) return (<p>Loading...</p>)
+    if(!data) return (<PageSpinner/>)
 
     return <>
     <p className={styles.titleCategory}>Destaques</p>

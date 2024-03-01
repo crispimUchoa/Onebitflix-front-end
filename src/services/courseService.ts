@@ -122,6 +122,18 @@ const couseService = {
             return error.response
         })
         return res
+    },
+    getEpisodes: async (id: number | string) =>{
+        const token = sessionStorage.getItem('onebitflix-token')
+
+        const res = api.get(`/courses/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).catch(error => {
+            return error.response
+        })
+        return res
     }
 }
 

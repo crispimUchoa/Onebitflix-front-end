@@ -51,6 +51,8 @@ export default function CoursePage(){
         }
     }
 
+   
+
     if (course === undefined) return (<>
     <Head>
         <title>Onebitflix - curso inexistente</title>
@@ -64,7 +66,8 @@ export default function CoursePage(){
         </div>
     </main>
     </>)
-        
+    
+
     
 
     return<>
@@ -123,7 +126,7 @@ export default function CoursePage(){
             </p>) :
             (
                 course?.episodes?.map((episode)=>(
-                    <EpisodesList key={episode.id} episode={episode}/>
+                    <EpisodesList key={episode.id} episode={episode} course={course}/>
                 ))
             )}
         </Container>

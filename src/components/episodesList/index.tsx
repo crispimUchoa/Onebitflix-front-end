@@ -18,7 +18,7 @@ export default function EpisodesList({episode, course}:props){
     }
 
     function handleEpisodePlayer(){
-        router.push(`/course/episode/${episode.order -1}?courseId=${course.id}`)
+        router.push(`/course/episode/${episode.order -1}?courseid=${course.id}&episodeid=${episode.id}`)
     }
 
     return <>

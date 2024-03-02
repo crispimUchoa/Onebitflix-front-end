@@ -16,12 +16,12 @@ export default function HeaderAuth(){
 
     async function handleSearch(event:FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        router.push(`search?name=${searchName}`)
+        router.push(`/search?name=${searchName}`)
         setSearchName('')
     }
 
     function handleSearchClick() {
-        router.push(`search?name=${searchName}`)
+        router.push(`/search?name=${searchName}`)
         setSearchName('')
     }
 

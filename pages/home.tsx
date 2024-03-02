@@ -8,8 +8,27 @@ import ListCategories from "@/components/homeAuth/listCategories";
 import NewestCategory from "@/components/homeAuth/newestCategory";
 import Head from "next/head";
 import { Container } from "reactstrap";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import PageSpinner from "@/components/common/spinner";
 
 export default function Home(){
+    const router = useRouter()
+    const [loading, setLoading] = useState(true)
+
+    useEffect(()=>{
+        if(!sessionStorage.getItem('onebitflix-token')){
+            router.push('/login') 
+        } else {
+            setLoading(false)
+        }
+    },[])
+
+    if(loading) {
+        return 
+        <PageSpinner/>
+
+    }
     return <>
     <Head>
         <title>Onebitflix - home</title>

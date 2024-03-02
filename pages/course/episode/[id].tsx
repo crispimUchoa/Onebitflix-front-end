@@ -18,10 +18,13 @@ export default function EpisodePlayer(){
     const episodeOrder = parseFloat(router.query.id?.toString() || '')
     const episodeId = parseFloat(router.query.episodeid?.toString() || '')
     const courseId = router.query.courseid?.toString() || ''
+ 
+    const [loading, setLoading] = useState(true)
+
     
     const [getEpisodeTime, setGetEpisodeTime] = useState(0)
     const [episodeTime, setEpisodeTime] = useState(0)
-
+    
     const playerRef = useRef<ReactPlayer>(null)
     
     async function handleGetEpisodeTime(){
@@ -31,27 +34,34 @@ export default function EpisodePlayer(){
             setGetEpisodeTime(res.data.seconds)
         }
     }
-
+    
     async function handleSetEpisodeTime(){
         const res = await watchEpisodeService.setWatchTime({episodeId, seconds: Math.round(episodeTime)})
         
     }
-
+    
+    useEffect(()=>{
+        if(!sessionStorage.getItem('onebitflix-token')){
+            router.push('/login') 
+        } else {
+            setLoading(false)
+        }
+    },[])
     useEffect(()=>{
         handleGetEpisodeTime()
     },[router])
-
+    
     function handlePlayerTime(){
         playerRef.current?.seekTo(getEpisodeTime)
         setIsReady(true)
     }
-
+    
     if(isReady === true){
         setTimeout(()=>{
             handleSetEpisodeTime()
         }, 1000*3)
     }
-
+    
     async function getCourse() {
         if(typeof courseId !=='string') return 
         console.log()
@@ -62,13 +72,13 @@ export default function EpisodePlayer(){
             setEpisode(res.data.episodes[episodeOrder])
         }
     }
-
+    
     useEffect(()=>{
         getCourse()
     }, [episodeOrder])
-
+    
     if(course?.episodes===undefined || episode === undefined) return <PageSpinner/>
-
+    
     
     function handleLastEpisode(){
         router.push(`/course/episode/${episodeOrder-1}?courseid=${course?.id}&episodeid=${course?.episodes![episodeOrder-1].id}`)
@@ -86,6 +96,11 @@ export default function EpisodePlayer(){
         }
     }
 
+    if(loading) {
+        return 
+        (<PageSpinner/>)
+    }
+    
     return<>
     <Head>
         <title>Onebitflix - {episode.name}</title>

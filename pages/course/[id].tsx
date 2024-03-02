@@ -16,6 +16,17 @@ export default function CoursePage(){
     const [favorited, setFavorited] = useState(false)
     const router = useRouter()
     const {id} = router.query
+    const [loading, setLoading] = useState(true)
+
+    useEffect(()=>{
+        if(!sessionStorage.getItem('onebitflix-token')){
+            router.push('/login') 
+        } else {
+            setLoading(false)
+        }
+    },[])
+
+    
 
     async function getCourse() {
         if(typeof id !=='string') return
@@ -51,7 +62,11 @@ export default function CoursePage(){
         }
     }
 
-   
+    if(loading) {
+        return 
+        <PageSpinner/>
+
+    }
 
     if (course === undefined) return (<>
     <Head>

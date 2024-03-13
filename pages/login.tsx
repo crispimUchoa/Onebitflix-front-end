@@ -43,7 +43,7 @@ export default function Login(){
         const params = {email, password}
 
         const {status} = await authService.login(params)
-
+        
         if(status ===200){
             router.push('/home')
         } else{
